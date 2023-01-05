@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :books, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  
   # belongs_to :books User:Bookが、多:1になっている
 
   has_one_attached :profile_image

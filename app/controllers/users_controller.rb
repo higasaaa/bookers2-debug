@@ -12,14 +12,14 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @book = Book.new
-    @user = User.find(params[:id]) #追加
+    # @user = User.find(params[:id]) #追加
   end
 
   def edit
     @user = User.find(params[:id]) #追記
-    # if @user != current_user
-    #   redirect_to user_path(current_user.id)
-    # end
+    if @user != current_user
+      redirect_to user_path(current_user.id)
+    end
   end
 
   def update

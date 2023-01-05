@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_in_path_for(resource)
-    root_path
+    # root_path
+    user_path(resource) #userの詳細ページに飛びたい
   end
 
   def after_sign_out_path_for(resource)

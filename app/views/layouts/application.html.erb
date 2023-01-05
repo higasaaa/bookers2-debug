@@ -15,8 +15,9 @@
     <%= render 'layouts/header' %>
       <main>
         <p id="notice"><%= notice %></p>
+        <%= yield %> <!--ここに各ページ内容として別途作成されたhtmlファイルの内容を持ってくるメソッド-->
       </main>
-    <%= yield %>
+    
     <%= render 'layouts/footer' %>
 
   </body>

@@ -21,18 +21,20 @@
         <td><%= book.body %></td>
         <td>
           <% if book.favorited_by?(current_user) %>
-            <%= link_to books_path(book), method: :derete do %>
+            <%= link_to book_favorites_path(book), method: :derete do %>
             ♥<%= book.favorites.count %>
             <% end %>
-        </td>
-        <td>
           <% else %>
-            <%= link_to book_path(book), method: :post do %>
+            <%= link_to book_favorites_path(book), method: :post do %>
             ♡<%= book.favorites.count %>
             <% end %>
+          <% end %>
+        </td>
+        <td>
+          コメント
         </td>
       </tr>
-          <% end %>
+
     <% end %>
   </tbody>
 </table>

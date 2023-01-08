@@ -1,0 +1,13 @@
+<% if @range == "User" %>
+
+  <% @users.each do |user| %>
+    <%= user.name %>
+  <% end %>
+ <!--<= render 'users/info', user: @user %>-->
+<% else %>
+  <% @books.each do |book| %>
+  <%= book.title %>
+  <%= book.text %>
+<% end %>
+ <!--<= render 'books/index', books: @books %>-->
+<% end %>

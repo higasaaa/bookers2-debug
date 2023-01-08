@@ -1,0 +1,7 @@
+<h2>Follower Users</h2>
+
+<% if @users.exists? %> <!--exists?メソッドの引数に条件を指定すると、条件にマッチするレコードがあればtrueを返す-->
+  <%= render '/users/index', users: @users %>
+<% else %>
+  <p>ユーザはいません</p>
+<% end %>

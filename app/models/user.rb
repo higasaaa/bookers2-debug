@@ -28,16 +28,29 @@ class User < ApplicationRecord
   end
   # フォローしたときの処理
   def follow(user_id)
-    relationships.create(followed_id: user_id)
-    # redirect_to 
+    relationships.create(followed_id: user_id) #ここのuser_idは外部キー
+    # redirect_to
   end
   # フォローを外すときの処理
   def unfollow(user_id)
     relationships.find_by(followed_id: user_id).destroy
-    #redirect_to 
+    #redirect_to
   end
   # フォローしているか判定
   def following?(user)
     followings.include?(user)
+  end
+
+  # 検索機能
+  def self.looks(searches, words)
+    if searches == "perfect_mach"
+      @user = User.where("name LIKE ?", "#{words}") #whereメソッドとは、テーブル内の条件に一致したレコードを配列の形で取得する
+    elsif searches == "forward_match"
+      @user = User.where("name Like ?", "#{words}%")
+    elsif searches =="backward_match"
+      @user = User.where("name LIKE ?", "%#{words}")
+    else
+      @user = User.where("name LIKE ?", "%#{words}%")
+    end
   end
 end

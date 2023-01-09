@@ -13,14 +13,15 @@
   		  <tr>
           <td>
             <%= link_to user_path(@book.user) do %>
-            <%= image_tag @book.user.get_profile_image, size:"100x100" %><br>
+            <%= image_tag @book.user.get_profile_image, size:"50x50" %><br>
             <%= @book.user.name %>
             <% end %>
           </td>
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
-          
-          <td><%= render "favorites/btn", book: @book %></td>
+          <!--いいねテンプレート-->
+          <td id="favorite_buttons_<%= @book.id %>">
+          <%= render "favorites/btn", book: @book %></td>
           <td>コメント数: <%= @book.book_comments.count %></td>
 
             <% if @book.user == current_user %> <!--もし、本の投稿をしたユーザーと現在ログインしているユーザーが一致していたらという意味-->
@@ -29,10 +30,14 @@
             <% end %>
         </tr>
       </table>
-
-      <%= render "book_comments/index", book: @book %> 
-      <%= render "book_comments/form", book: @book, book_comment: @book_comment %>
-
+      <!--コメントテンプレート-->
+      <div id="comment-area">
+        <%= render "book_comments/index", book: @book %>
+      </div>
+      <!--コメントテンプレート-->
+      <div id="comment-form">
+        <%= render "book_comments/form", book: @book, book_comment: @book_comment %>
+      </div>
     </div>
   </div>
 </div>

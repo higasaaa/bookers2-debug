@@ -1,12 +1,12 @@
  <!--既にいいねされている時-->
   <% if book.favorited_by?(current_user) %>
-    <%= link_to book_favorites_path(book), method: :delete do %>
+    <%= link_to book_favorites_path(book), method: :delete, remote: true do %><!--remote: true追加 JavaScriptのリクエストがfavoritesコントローラに送られる-->
       <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
     <%= book.favorites.count %>
     <% end %>
     <!--いいねされていない時-->
   <% else %>
-    <%= link_to book_favorites_path(book), method: :post do %>
+    <%= link_to book_favorites_path(book), method: :post, remote: true do %> <!--remote: true追加-->
       <i class="fas fa-heart" aria-hidden="true"></i>
       <%= book.favorites.count %>
     <% end %>

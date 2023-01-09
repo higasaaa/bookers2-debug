@@ -46,7 +46,7 @@ class User < ApplicationRecord
     if searches == "perfect_mach"
       @user = User.where("name LIKE ?", "#{words}") #whereメソッドとは、テーブル内の条件に一致したレコードを配列の形で取得する
     elsif searches == "forward_match"
-      @user = User.where("name Like ?", "#{words}%")
+      @user = User.where("name Like ?", "#{words}%") #name Likeのnameは検索するカラム名
     elsif searches =="backward_match"
       @user = User.where("name LIKE ?", "%#{words}")
     else

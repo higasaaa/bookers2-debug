@@ -10,17 +10,17 @@ class Book < ApplicationRecord
   def favorited_by?(user) #引数で渡されたユーザidがFavoritesテーブル内に存在（exists?）するかどうかを調べる
     favorites.exists?(user_id: user.id)
   end
-  
+
   #検索機能
   def self.looks(searches, words)
     if searches == "perfect_mach"
-      @user = User.where("name LIKE ?", "#{words}%") #whereメソッドとは、テーブル内の条件に一致したレコードを配列の形で取得する
+      @book = Book.where("title LIKE ?", "#{words}") #whereメソッドとは、テーブル内の条件に一致したレコードを配列の形で取得する
     elsif searches == "forward_match"
-      @user = User.where("name Like ?", "%#{words}")
+      @book = Book.where("title Like ?", "#{words}%") #title Likeのtitleは検索するカラム
     elsif searches =="backward_match"
-      @user = User.where("name LIKE ?", "#{words}")
+      @book = Book.where("title LIKE ?", "%#{words}")
     else
-      @user = User.where("name LIKE ?", "%#{words}%")
+      @book = Book.where("title LIKE ?", "%#{words}%")
     end
   end
 end
